@@ -3,20 +3,20 @@
 #include <iostream> 
 using namespace std;
 Singleton* Singleton::_instance = NULL;
-Singleton::Singleton() 
+Singleton::Singleton()
 { 
-	cout<<"Singleton...."<<endl; 
+    cout<<"Singleton...."<<endl;
 }
 Singleton::~Singleton()
 {
+    printf("%s\n",__func__);
 }
-Singleton* Singleton::Instance() 
+Singleton* Singleton::Instance()
 { 
-	if (_instance == NULL) 
-	{ 
-			_instance = new Singleton(); 
-	}
-	return _instance; 
+    if (_instance == NULL){
+        _instance = new Singleton();
+    }
+    return _instance;
 }
 void Singleton::deleteInstance()
 {
