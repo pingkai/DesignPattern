@@ -56,7 +56,7 @@ class Director
 public:
 	Director(Builder* bld);
 	~Director();
-	void Construct();
+	void Construct(int model);
 protected:
 private: 
 	Builder* _bld;

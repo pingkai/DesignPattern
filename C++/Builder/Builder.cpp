@@ -74,9 +74,16 @@ Director::~Director()
 {
 
 }
-void Director::Construct() 
-{ 
-	_bld->BuildPartA("user-defined"); 
-	_bld->BuildPartB("user-defined"); 
-	_bld->BuildPartC("user-defined"); 
+void Director::Construct(int model) 
+{
+    if (model == 1){
+        _bld->BuildPartA("user1-defined"); 
+        _bld->BuildPartB("user1-defined"); 
+        _bld->BuildPartC("user1-defined");
+    }else if (model == 2){
+        _bld->BuildPartA("user2-defined"); 
+        _bld->BuildPartB("user2-defined"); 
+        _bld->BuildPartC("user2-defined");
+        _bld->BuildPartC("user2-defined");
+    }
 }
