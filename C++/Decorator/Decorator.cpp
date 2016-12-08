@@ -3,54 +3,86 @@
 
 using namespace std;
 
-Component::Component() {
+Ingredient::Ingredient() {
 
 }
 
-Component::~Component() {
+Ingredient::~Ingredient() {
 
 }
 
-void Component::Operation() {
+void Ingredient::printDescription() {
+    std::cout << "Name: " + getDescription() << std::endl;
+    std::cout << "Price:" << getCost()<< std::endl << endl;
+}
+
+Bread::Bread(string desc) {
+    mDescription = desc;
+}
+
+Bread::~Bread() {
 
 }
 
-ConcreteComponent::ConcreteComponent() {
-
+string Bread::getDescription() { 
+	return mDescription;
 }
 
-ConcreteComponent::~ConcreteComponent() {
-
+double Bread::getCost(){
+    return 2.48;
 }
 
-void ConcreteComponent::Operation() { 
-	std::cout << "ConcreteComponent operation..." << std::endl;
+Decorator::Decorator(Ingredient* ing) { 
+	mIngredient = ing;
 }
 
-Decorator::Decorator(Component* com) { 
-	this->_com = com;
+double Decorator::getCost(){
+    return mIngredient->getCost();
+}
+string Decorator::getDescription(){
+    return mIngredient->getDescription();
 }
 
 Decorator::~Decorator() { 
-	delete _com; 
-}
-void Decorator::Operation() {
-
+	delete mIngredient; 
 }
 
-ConcreteDecorator::ConcreteDecorator(Component*com) :Decorator(com) {
+Pork::Pork(Ingredient*igd) :Decorator(igd) {
 
 }
 
-ConcreteDecorator::~ConcreteDecorator() {
+Pork::~Pork() {
 
 }
 
-void ConcreteDecorator::AddedBehavior() { 
-	std::cout << "ConcreteDecorator::AddedBehacior...." << std::endl; 
+string Pork::getDescription(){ 
+	string base = mIngredient->getDescription();
+    return base +"\n" + "\t" +"Decrocated with Pork! ";
 } 
 
-void ConcreteDecorator::Operation() {
-	_com->Operation();
-	this->AddedBehavior();
+double Pork::getCost(){
+    double basePrice = mIngredient->getCost();
+    double porkPrice = 1.8;
+
+return basePrice + porkPrice ;
+}
+
+Mutton::Mutton(Ingredient*igd) :Decorator(igd) {
+
+}
+
+Mutton::~Mutton() {
+
+}
+
+string Mutton::getDescription(){ 
+	string base = mIngredient->getDescription();
+    return base +"\n"+ "\t" +"Decrocated with Mutton! ";
+} 
+
+double Mutton::getCost(){
+    double basePrice = mIngredient->getCost();
+    double MuttonPrice = 2.8;
+
+return basePrice + MuttonPrice ;
 }

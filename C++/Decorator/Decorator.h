@@ -1,40 +1,58 @@
 #ifndef _DECORATOR_H_
 #define  _DECORATOR_H_
+#include <iostream>
+using namespace std;
 
-class Component {
+class Ingredient {
 public:
-	virtual ~Component();
-	virtual void Operation();
+	virtual ~Ingredient();
+    virtual string getDescription() = 0;
+    virtual double getCost() = 0;
+    void printDescription();
 
 protected: 
-	Component();
+	Ingredient();
 };
 
-class ConcreteComponent:public Component 
+class Bread : public Ingredient
 { 
 public: 
-	ConcreteComponent();
-	~ConcreteComponent();
-	void Operation();
+	Bread(string desc);
+	~Bread();
+	string getDescription();
+    double getCost();
+
+private:
+    string mDescription;
 };
 
-class Decorator :public Component
+class Decorator :public Ingredient
 {
 public: 
-	Decorator(Component* com);
+	Decorator(Ingredient* ing);
 	virtual ~Decorator();
-	void Operation();
+    virtual string getDescription();
+    virtual double getCost();
 protected: 
-	Component* _com;
+	Ingredient* mIngredient;
 };
 
-class ConcreteDecorator :public Decorator 
+class Pork :public Decorator
 {
 public: 
-	ConcreteDecorator(Component* com);
-	~ConcreteDecorator();
-	void Operation();
-	void AddedBehavior();
+	Pork(Ingredient* igd);
+	~Pork();
+	string getDescription();
+    double getCost();
+};
+
+class Mutton :public Decorator 
+{
+public: 
+	Mutton(Ingredient* igd);
+	~Mutton();
+	string getDescription();
+    double getCost();
 };
 
 #endif
