@@ -13,8 +13,8 @@ public:
 
 public: 
 	virtual void Operation() = 0;
-	virtual void Add(const Component&);
-	virtual void Remove(const Component&);
+	virtual void Add(Component*);
+	virtual void Remove(Component*);
 	virtual Component* GetChild(int index);
 };
 
@@ -35,8 +35,10 @@ private:
 
 class Leaf :public Component {
 public: 
-	Leaf();
+	Leaf(int index);
 	~Leaf();
 	void Operation();
+private:
+    int mIndex;
 };
 #endif

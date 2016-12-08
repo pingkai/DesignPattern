@@ -8,7 +8,7 @@ Component::~Component() {
 
 }
 
-void Component::Add(const Component& com) {
+void Component::Add(Component* com) {
 
 }
 
@@ -16,7 +16,7 @@ Component* Component::GetChild(int index) {
 	return 0; 
 }
 
-void Component::Remove(const Component& com) {
+void Component::Remove(Component* com) {
 
 }
 
@@ -62,14 +62,16 @@ Component* Composite::GetChild(int index){
 }
 
 
-Leaf::Leaf() {
+Leaf::Leaf(int index) {
+
+    mIndex = index;
 
 }
 
 Leaf::~Leaf() { 
-	cout << "Leaf::~Leaf()" << endl; 
+	cout << "Leaf::~Leaf()" << mIndex << endl; 
 }
 
 void Leaf::Operation() { 
-	cout << "Leaf operation....." << endl; 
+	cout << "Leaf operation..... " <<  mIndex << endl; 
 }
