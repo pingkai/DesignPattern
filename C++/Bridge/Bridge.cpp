@@ -21,7 +21,8 @@ RefinedAbstraction::~RefinedAbstraction() {
 }
 
 void RefinedAbstraction::Operation() { 
-	_imp->Operation(); 
+	_imp->Operation();
+    cout << "RefinedAbstraction...." << endl;
 }
 
 AbstractionImp::AbstractionImp() {
