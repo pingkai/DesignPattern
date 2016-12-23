@@ -1,5 +1,7 @@
 #ifndef _COMMAND_H_
 #define _COMMAND_H_
+#include <vector>
+using namespace std;
 
 class Reciever {
 public: 
@@ -25,12 +27,24 @@ private:
 	Reciever* _rev;
 };
 
+
+class ConcreteCommand1 :public Command {
+public: 
+	ConcreteCommand1(Reciever* rev);
+	~ConcreteCommand1();
+	void Excute();
+private: 
+	Reciever* _rev;
+};
+
+
 class Invoker {
 public: 
-	Invoker(Command* cmd);
+	Invoker();
 	~Invoker();
+    void add(Command* cmd);
 	void Invoke();
 private: 
-	Command* _cmd;
+	vector<Command*> _cmds;
 };
 #endif

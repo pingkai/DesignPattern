@@ -1,45 +1,43 @@
 #ifndef _STATE_H_
 #define _STATE_H_
 
+#include <iostream>
+using namespace std;
+
 class Context;
 
 class State {
 public:
 	State();
 	virtual ~State();
-	virtual void OperationInterface(Context*) = 0;
-	virtual void OperationChangeState(Context*) = 0;
+	virtual void OperationInterface(Context*);
 protected:
-	bool ChangeState(Context* con, State* st);
+    string mDes;
 };
 
 class ConcreteStateA :public State {
 public:
 	ConcreteStateA();
 	virtual ~ConcreteStateA();
-	virtual void OperationInterface(Context*);
-	virtual void OperationChangeState(Context*);
+//	virtual void OperationInterface(Context*);
 };
 
 class ConcreteStateB :public State {
 public:
 	ConcreteStateB();
 	virtual ~ConcreteStateB();
-	virtual void OperationInterface(Context*);
-	virtual void OperationChangeState(Context*);
+//	virtual void OperationInterface(Context*);
 };
 
 
 class Context {
 public:
 	Context();
-	Context(State* state);
 	~Context();
+    void setState(State*);
 	void OprationInterface();
-	void OperationChangState();
 private:
 	friend class State; 
-	bool ChangeState(State* state);
 	State* _state;
 };
 #endif
